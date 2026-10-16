@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS building_permits (
+  permit_number       VARCHAR(20)   NOT NULL,
+  created_date        DATE          NULL,
+  issue_date          DATE          NULL,
+  elapsed_days        INT           NULL,
+  project_value       DECIMAL(15,2) NULL,
+  type_of_work        VARCHAR(100)  NULL,
+  address             VARCHAR(255)  NULL,
+  project_description TEXT          NULL,
+  permit_category     VARCHAR(255)  NULL,
+  applicant           VARCHAR(255)  NULL,
+  property_use        VARCHAR(500)  NULL,
+  specific_use_category VARCHAR(255) NULL,
+  building_contractor VARCHAR(255)  NULL,
+  building_contractor_address VARCHAR(255)  NULL,
+  issue_year          VARCHAR(4)           NULL,
+  permit_year_month   VARCHAR(7)    NULL,
+  local_area          VARCHAR(100)  NULL,
+  latitude            DECIMAL(10,7) NULL,
+  longitude           DECIMAL(10,7) NULL,
+  PRIMARY KEY (permit_number),
+  INDEX idx_issue_date (issue_date)
+) CHARACTER SET utf8mb4;
