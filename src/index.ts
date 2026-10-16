@@ -2,7 +2,7 @@ import { fetchAllPermits } from './api';
 import { Permit, transformPermit } from './transform';
 import { upsertPermits, countPermits, closePool, applySchema } from './db';
 
-const YEAR = '2017';
+const YEAR = '2018';
 async function main() {
     const { totalCount, records } = await fetchAllPermits(YEAR);
 
