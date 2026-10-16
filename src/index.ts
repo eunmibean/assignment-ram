@@ -22,6 +22,7 @@ async function main() {
   const isAllInserted = records.length === totalCount && dbCount === permits.length;
   console.log(`All records inserted: ${isAllInserted}`);
   await closePool();
+  if (!isAllInserted) process.exit(1);
 }
 
 main().catch((err) => {
