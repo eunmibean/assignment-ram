@@ -36,7 +36,6 @@ const COLUMNS = [
   'specific_use_category',
   'building_contractor',
   'building_contractor_address',
-  'permit_year_month',
   'local_area',
   'latitude',
   'longitude',
@@ -78,8 +77,8 @@ export async function upsertPermits(permits: Permit[]): Promise<void> {
   }
 }
 
-export async function countPermits(): Promise<number> {
-  const [rows] = await pool.query('SELECT COUNT(*) AS cnt FROM building_permits');
+export async function countPermits(year: string): Promise<number> {
+  const [rows] = await pool.query('SELECT COUNT(*) AS cnt FROM building_permits WHERE issue_date >= ? AND issue_date < ?', [`${year}-01-01`, `${Number(year)+1}-01-01`]);
   return Number((rows as { cnt: number }[])[0]?.cnt ?? 0);
 }
 

@@ -1,9 +1,10 @@
 import { fetchAllPermits } from './api';
-import { Permit, transformPermit, type RawPermit } from './transform';
+import { Permit, transformPermit } from './transform';
 import { upsertPermits, countPermits, closePool, applySchema } from './db';
 
+const YEAR = '2017';
 async function main() {
-    const { totalCount, records } = await fetchAllPermits('2017');
+    const { totalCount, records } = await fetchAllPermits(YEAR);
 
   console.log('fetched records:', totalCount, records.length);
   const permits: Permit[] = [];
@@ -13,7 +14,13 @@ async function main() {
 }
   await applySchema();
   await upsertPermits(permits);
-  console.log('rows in DB:', await countPermits());
+
+  const dbCount = await countPermits(YEAR);
+  console.log(`API total_count: ${totalCount}`);
+  console.log(`rows ${YEAR} in DB: ${dbCount}`);
+
+  const isAllInserted = records.length === totalCount && dbCount === permits.length;
+  console.log(`All records inserted: ${isAllInserted}`);
   await closePool();
 }
 
