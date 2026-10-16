@@ -13,8 +13,6 @@ CREATE TABLE IF NOT EXISTS building_permits (
   specific_use_category VARCHAR(255) NULL,
   building_contractor VARCHAR(255)  NULL,
   building_contractor_address VARCHAR(255)  NULL,
-  issue_year          VARCHAR(4)           NULL,
-  permit_year_month   VARCHAR(7)    NULL,
   local_area          VARCHAR(100)  NULL,
   latitude            DECIMAL(10,7) NULL,
   longitude           DECIMAL(10,7) NULL,

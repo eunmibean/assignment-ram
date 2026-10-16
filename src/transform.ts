@@ -15,7 +15,6 @@ export interface RawPermit {
   specificusecategory?: string[] | null;
   buildingcontractor?: string | null;
   buildingcontractoraddress?: string | null;
-  issueyear?: string | null;    
   geolocalarea?: string | null;
   yearmonth?: string | null;
   geo_point_2d?: { lat: number; lon: number } | null;
@@ -38,8 +37,6 @@ export interface Permit {
   specificUseCategory: string | null;
   buildingContractor: string | null;
   buildingContractorAddress: string | null;
-  issueYear: string | null;    
-  yearMonth: string | null;
   localArea: string | null;
   latitude: number | null;
   longitude: number | null;
@@ -83,8 +80,6 @@ export function transformPermit(raw: RawPermit): Permit | null {
     propertyUse: cleanText(raw.propertyuse?.join(', ')),
     buildingContractor: cleanText(raw.buildingcontractor),
     buildingContractorAddress: cleanText(raw.buildingcontractoraddress),
-    issueYear: cleanText(raw.issueyear),
-    yearMonth: cleanText(raw.yearmonth),
     localArea: cleanText(raw.geolocalarea),
     latitude: toNumber(raw.geo_point_2d?.lat),
     longitude: toNumber(raw.geo_point_2d?.lon),
